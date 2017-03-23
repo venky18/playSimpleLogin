@@ -14,7 +14,7 @@ public class Application extends Controller {
  //            routes.Application.logout()
  //    );
     public Result login() {
-        return ok(login.render());
+        return ok(login.render("tets"));
     }
     // public Result logouthtml() {
     //     return ok(logouthtml.render());
@@ -25,18 +25,20 @@ public class Application extends Controller {
     	DynamicForm dynamicForm = Form.form().bindFromRequest();
     	Logger.info("Username is: " + dynamicForm.get("username"));
     	Logger.info("Password is: " + dynamicForm.get("password"));
-    	session("connected", "user@gmail.com");
+    	String email = dynamicForm.get("username");
+    	session("connected", email);
     	// return ok();
     	// return redirect(
      //        routes.Application.logout()
      //    );
-    	return redirect(logouthtml.render());
+    	return ok(index.render(email));//couldn't figure out how to redirect to logoutsala.html
+    								   // so redirecting to this site
 
     }
     public Result logoutSubmit() 
-    {
+    {	
     	session().remove("connected");
-    	return ok("Bye");
+    	return ok(login.render("You logged out"));
 	}
 
 

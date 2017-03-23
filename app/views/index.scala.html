@@ -1,20 +1,22 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
-@(message: String)
 
-@*
- * Call the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
-@main("Welcome to Play") {
+@(lol:String)
 
-    @*
-     * Get an `Html` object by calling the built-in Play welcome
-     * template and passing a `String` message.
-     *@
-    @welcome(message, style = "java")
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/login.css")">
 
-}
+    </head>
+    <body> 
+
+        <div class="login-page">
+            <h3>user name is @(lol)</h3>
+            <div class="form">
+                <form class = "login-form"method="post" action="@routes.Application.logoutSubmit">
+                    <button type="submit" class="flat-button"> Logout</button>
+                </form>
+            </div>
+
+        </div>
+    </body>
+</html>
