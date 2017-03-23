@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/login.css")">
+
+    </head>
+    <body>  
+        <div class="login-page">
+            <div class="form">
+                <form class = "login-form"method="post" action="@routes.Application.loginSubmit()">
+                    <label>User name</label>
+                    <input type="text" name="username" placeholder="username"/><br/>
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="password" /><br/>
+                    <button type="submit" class="flat-button"> Login</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
