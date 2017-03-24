@@ -10,11 +10,8 @@ import play.data.Form;
 public class Application extends Controller {
 
 
-	// public static Result GO_HOME = redirect(
- //            routes.Application.logout()
- //    );
     public Result login() {
-        return ok(login.render("tets"));
+        return ok(login.render("no user logged in"));
     }
     // public Result logouthtml() {
     //     return ok(logouthtml.render());
@@ -25,19 +22,29 @@ public class Application extends Controller {
     	DynamicForm dynamicForm = Form.form().bindFromRequest();
     	Logger.info("Username is: " + dynamicForm.get("username"));
     	Logger.info("Password is: " + dynamicForm.get("password"));
-    	String email = dynamicForm.get("username");
-    	session("connected", email);
+    	String username = dynamicForm.get("username");
+        String password = dynamicForm.get("password");
+        if (username.equals("netlogo") && password.equals("pass"))
+        {
+             session("connected", username);
+            return ok(index.render("connected with username "+username));
+        }
+
+        return badRequest(login.render("NOT VALID PASSWORD"));
+                                       
+
+        // return badRequest(login.render("NOT VALID PASSWORD"));
+    	
     	// return ok();
     	// return redirect(
      //        routes.Application.logout()
      //    );
-    	return ok(index.render(email));//couldn't figure out how to redirect to logoutsala.html
-    								   // so redirecting to this site
 
     }
     public Result logoutSubmit() 
     {	
     	session().remove("connected");
+        session().clear();
     	return ok(login.render("You logged out"));
 	}
 
